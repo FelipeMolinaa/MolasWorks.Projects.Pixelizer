@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MolasWorks.Projects.Pixelizer.Modules;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -9,11 +10,6 @@ namespace MolasWorks.Projects.Pixelizer.Interfaces
 {
     public interface IPrinter
     {
-        public int Height { get; set; }
-        public int Width { get; set; }
-        public int Area { get; }
-        public List<Color> Colors { get; set; }
-
-        public Bitmap PrintImage(string printPlan);
+        public Bitmap PrintImage(IPrintModel printModel);
     }
 }

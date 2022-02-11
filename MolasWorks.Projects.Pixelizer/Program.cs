@@ -19,22 +19,33 @@ namespace MolasWorks.Projects.Pixelizer
 
         static void Main(string[] args)
         {
-            var printer = new Printer()
-            {
-                Height = 2,
-                Width = 2,
-                Colors = new List<Color>() {
-                    Color.Red,
-                    Color.Blue,
+            var printer = new Printer();
+
+            var printPlan = new List<IList<int>>() {
+                new List<int>(){
+                    1,0,0,0,0,0,1
+                },
+                new List<int>(){
+                    1,1,0,0,0,1,1
+                },
+                new List<int>(){
+                    0,1,1,0,1,1,0
+                },
+                new List<int>(){
+                    0,0,1,1,1,0,0
                 },
             };
 
-            var printerManagement = new PrinterManagement(printer);
+            var colors = new List<Color>() {
+                Color.Green,
+                Color.White
+            };
 
-            printerManagement.StartPrinter();
+            var printModel = new PrintModel(printPlan, colors);
 
-            //printer.PrintImage();
+            var print = printer.PrintImage(printModel);
 
+            print.Save("imgs/imagemBonita.png", ImageFormat.Png);
         }
     }
 }

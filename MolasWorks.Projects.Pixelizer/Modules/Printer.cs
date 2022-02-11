@@ -10,20 +10,15 @@ namespace MolasWorks.Projects.Pixelizer.Modules
 {
     public class Printer : IPrinter
     {
-        public int Height { get; set; }
-        public int Width { get; set; }
-        public int Area { get => (Height * Width); }
-        public List<Color> Colors { get; set; }
-
-        public Bitmap PrintImage(string printPlan) {
-            var image = new Bitmap(Width, Height);
-            for (int x = 1; x <= Height; x++)
+        public Bitmap PrintImage(IPrintModel printModel) {
+            var image = new Bitmap(printModel.Width, printModel.Height);
+            for (int y = 0; y < printModel.Height; y++)
             {
-                for (int y = 1; y <= Height; y++)
+                for (int x = 0; x < printModel.Width; x++)
                 {
-                    var nextPixel = printPlan[(x * Width) - (Width - y) - 1];
-                    var color = Colors[Convert.ToInt32(Convert.ToString(nextPixel))];
-                    image.SetPixel(x - 1, y - 1, color);
+                    var pixel = printModel.PrintPlan[y][x];
+                    var color = printModel.Colors[pixel];
+                    image.SetPixel(x, y, color);
                 }
             }
 
