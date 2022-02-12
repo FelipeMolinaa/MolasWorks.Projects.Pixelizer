@@ -1,14 +1,11 @@
 ﻿using MolasWorks.Projects.Pixelizer.Modules;
-using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
-using System.IO;
 
-namespace MolasWorks.Projects.Pixelizer
+namespace MolasWorks.Projects.Pixelizer.Terminal
 {
-    internal class Program
+    public class Program
     {
         //TODO: Refatorar o codigo
         //TODO: Desenvolver um sistema de logs Maneirudo
@@ -17,22 +14,13 @@ namespace MolasWorks.Projects.Pixelizer
         //TODO: Dar mais controle dos parametros para o usuario
         //TODO: Desenvolver uma interface mais bonita
 
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
             var printer = new Printer();
 
             var printPlan = new List<IList<int>>() {
                 new List<int>(){
-                    1,0,0,0,0,0,1
-                },
-                new List<int>(){
-                    1,1,0,0,0,1,1
-                },
-                new List<int>(){
-                    0,1,1,0,1,1,0
-                },
-                new List<int>(){
-                    0,0,1,1,1,0,0
+                    1,0,0,0,0,0,1,0,0,0,
                 },
             };
 
@@ -45,7 +33,7 @@ namespace MolasWorks.Projects.Pixelizer
 
             var print = printer.PrintImage(printModel);
 
-            print.Save("imgs/imagemBonita.png", ImageFormat.Png);
+            print.Save("output/imagemBonita.png", ImageFormat.Png);
         }
     }
 }
