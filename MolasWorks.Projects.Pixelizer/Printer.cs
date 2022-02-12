@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
+using System.Linq;
 
 namespace MolasWorks.Projects.Pixelizer.Modules
 {
@@ -16,9 +17,19 @@ namespace MolasWorks.Projects.Pixelizer.Modules
             {
                 for (int x = 0; x < printModel.Width; x++)
                 {
-                    var pixel = printModel.PrintPlan[y][x];
-                    var color = printModel.Colors[pixel];
-                    image.SetPixel(x, y, color);
+                    try {
+                        var pixelLine = printModel.PrintPlan[y];
+                        if (pixelLine == "") continue;
+                        var pixel = pixelLine.ToCharArray();
+
+                        var teste = Convert.ToInt32(pixel[x].ToString());
+                        var color = printModel.Colors[teste];
+                        image.SetPixel(x, y, color);
+                    }
+                    catch (Exception ex) {
+                        Console.WriteLine(ex.Message);
+                        throw new Exception("Ocorreu um erro ao imprimir a imagem, revise o input");
+                    }
                 }
             }
 

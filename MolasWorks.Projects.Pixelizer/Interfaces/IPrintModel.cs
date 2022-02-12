@@ -13,6 +13,7 @@ namespace MolasWorks.Projects.Pixelizer.Interfaces
         public int Width { get; }
         public int Area { get; }
         public List<Color> Colors { get; set; }
-        public IList<IList<int>> PrintPlan { get; set; }
+        public IList<string> PrintPlan { get; set; }
+        public string FileName { get; set; }
     }
 }
